@@ -326,7 +326,7 @@ if [ -f /etc/delphix/version ]  ; then
    fi
 fi
 
-all="randrw write readrand"
+all="randrw write read"
 #all="readrand write read "
 if [ $TESTS = "all" ] ; then
   jobs=$all
