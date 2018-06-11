@@ -57,12 +57,10 @@ DTRACE2=""
 
 MULTIUSERS="01 08 16 32 64"
 READSIZES="0008 0032 0128"
-SEQREADSIZES="0128 1024"
-SEQREADSIZES="1024"
+SEQREADSIZES="0001 0008 0032 0128 1024"
 
-WRITESIZES="0001 0004 0008 0016 0032 0064 0128"
 MULTIWRITEUSERS="01 02 04 08 16"
-WRITESIZES="0001 0008 0128"
+WRITESIZES="0001 0008 0032 0128 1024"
 MULTIWRITEUSERS="01 04 16"
 
 usage()
@@ -730,19 +728,8 @@ for job in $jobs; do # {
        done
   #  MB/s test : 1M by 1,8,16,32 users & 8k,32k,128k,1m by 1 user
   elif [ $job ==  "read" ] ; then
-       for READSIZE in `eval echo $READSIZES` ; do 
-         PREFIX="$OUTPUT/${job}_u01_kb${READSIZE}"
-         JOBFILE=${PREFIX}.job
-         init
-         USERS=1
-         OFFSET=0
-         eval $job
-         cmd="$DTRACE1 $BINARY $JOBFILE $DTRACE2> ${PREFIX}.out"
-         echo $cmd
-         [[ $EVAL -eq 1 ]] && eval $cmd
-       done
-       for seq_read_size in $SEQREADSIZES; do 
-         for USERS in `eval echo $MULTIUSERS` ; do 
+     for seq_read_size in $SEQREADSIZES; do 
+       for USERS in `eval echo $MULTIUSERS` ; do 
            #READSIZE=$SEQREADSIZE
            READSIZE=$seq_read_size
            #echo "j: $USERS"
@@ -753,8 +740,8 @@ for job in $jobs; do # {
            cmd="$DTRACE1 $BINARY $JOBFILE $DTRACE2> ${PREFIX}.out"
            echo $cmd
            [[ $EVAL -eq 1 ]] && eval $cmd
-         done
        done
+     done
   # workload test: 8k read write by 1,8,16,32 users
   elif [ $job ==  "randrw" ] ; then
     for USERS in `eval echo $MULTIUSERS` ; do 
