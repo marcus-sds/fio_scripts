@@ -1,21 +1,19 @@
 # How to test with Ceph
 
-		USER=ubuntu
-		pssh -i -h ~/hosts -l $USER -t 600 -x " -i ~/.ssh/key.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GlobalKnownHostsFile=/dev/null" "sudo bash -c 'cd fio_scripts;./run.sh write'"
-
-		git clone https://github.com/marcus-sds/fio_scripts.git
-		tar xvfz pssh-2.3.1.tar.gz;cd pssh*;python setup.py install
-		export USER=ubuntu
-		pssh -i -h ~/hosts -l $USER -t 600 -x " -i ~/.ssh/key.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GlobalKnownHostsFile=/dev/null" "sudo bash -c 'apt-get install -y fio bc'"
-		pssh -i -h ~/hosts -l $USER -t 600 -x " -i ~/.ssh/key.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GlobalKnownHostsFile=/dev/null" "sudo bash -c 'git clone https://github.com/marcus-sds/fio_scripts.git'"
-		pssh -i -h ~/hosts -l $USER -t 600 -x " -i ~/.ssh/key.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GlobalKnownHostsFile=/dev/null" "sudo bash -c 'mount.ceph 172.31.7.226:6789:/ /mnt'"
-		pssh -i -h ~/hosts -l $USER -t 600 -x " -i ~/.ssh/key.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GlobalKnownHostsFile=/dev/null" "sudo bash -c 'df -h'"
-		pssh -i -h ~/hosts -l $USER -t 600 -x " -i ~/.ssh/key.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GlobalKnownHostsFile=/dev/null" "sudo bash -c 'bash ./fio_scripts/init.sh'"
-		pssh -i -h ~/hosts -l $USER -t 600 -x " -i ~/.ssh/key.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GlobalKnownHostsFile=/dev/null" "sudo bash -c 'ls /mnt/weka/'"
-		pssh -i -h ~/hosts -l $USER -t 600 -x " -i ~/.ssh/key.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GlobalKnownHostsFile=/dev/null" "sudo bash -c 'cd fio_scripts;./run.sh write'"
-		pssh -i -h ~/hosts -l $USER -t 600 -x " -i ~/.ssh/key.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GlobalKnownHostsFile=/dev/null" "sudo bash -c 'cd fio_scripts;./run.sh randrw'"
-		pssh -i -h ~/hosts -l $USER -t 600 -x " -i ~/.ssh/key.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GlobalKnownHostsFile=/dev/null" "sudo bash -c 'cd fio_scripts;./run.sh write'"
-		pssh -i -h ~/hosts -l $USER -t 600 -x " -i ~/.ssh/key.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GlobalKnownHostsFile=/dev/null" "sudo bash -c 'cd fio_scripts;./run.sh read'"
+	USER=ubuntu
+	pssh -i -h ~/hosts -l $USER -t 600 -x " -i ~/.ssh/key.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GlobalKnownHostsFile=/dev/null" "sudo bash -c 'cd fio_scripts;./run.sh write'"
+	git clone https://github.com/marcus-sds/fio_scripts.git
+	tar xvfz pssh-2.3.1.tar.gz;cd pssh*;python setup.py install
+	pssh -i -h ~/hosts -l $USER -t 600 -x " -i ~/.ssh/key.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GlobalKnownHostsFile=/dev/null" "sudo bash -c 'apt-get install -y fio bc'"
+	pssh -i -h ~/hosts -l $USER -t 600 -x " -i ~/.ssh/key.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GlobalKnownHostsFile=/dev/null" "sudo bash -c 'git clone https://github.com/marcus-sds/fio_scripts.git'"
+	pssh -i -h ~/hosts -l $USER -t 600 -x " -i ~/.ssh/key.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GlobalKnownHostsFile=/dev/null" "sudo bash -c 'mount.ceph 172.31.7.226:6789:/ /mnt'"
+	pssh -i -h ~/hosts -l $USER -t 600 -x " -i ~/.ssh/key.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GlobalKnownHostsFile=/dev/null" "sudo bash -c 'df -h'"
+	pssh -i -h ~/hosts -l $USER -t 600 -x " -i ~/.ssh/key.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GlobalKnownHostsFile=/dev/null" "sudo bash -c 'bash ./fio_scripts/init.sh'"
+	pssh -i -h ~/hosts -l $USER -t 600 -x " -i ~/.ssh/key.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GlobalKnownHostsFile=/dev/null" "sudo bash -c 'ls /mnt/weka/'"
+	pssh -i -h ~/hosts -l $USER -t 600 -x " -i ~/.ssh/key.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GlobalKnownHostsFile=/dev/null" "sudo bash -c 'cd fio_scripts;./run.sh write'"
+	pssh -i -h ~/hosts -l $USER -t 600 -x " -i ~/.ssh/key.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GlobalKnownHostsFile=/dev/null" "sudo bash -c 'cd fio_scripts;./run.sh randrw'"
+	pssh -i -h ~/hosts -l $USER -t 600 -x " -i ~/.ssh/key.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GlobalKnownHostsFile=/dev/null" "sudo bash -c 'cd fio_scripts;./run.sh write'"
+	pssh -i -h ~/hosts -l $USER -t 600 -x " -i ~/.ssh/key.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GlobalKnownHostsFile=/dev/null" "sudo bash -c 'cd fio_scripts;./run.sh read'"
 
 
 fio_scripts
